@@ -1,0 +1,46 @@
+micronaut:
+  application:
+    name: reactiveCrudExample
+  server:
+    netty:
+      access-logger:
+        enabled: true
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+
+netty:
+  default:
+    allocator:
+      max-order: 3
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+#      default-schema: crud-example
+      create-schemas: true
+#      schemas: crud-example
+#      clean-schema: false
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    schema-generate: NONE
+    dialect: POSTGRES
+#    schema: crud-example
+r2dbc:
+  datasources:
+    default:
+      url: r2dbc:postgresql://localhost:5432/postgres
+      username: postgres
+      password: postgres
+      dialect: POSTGRES
+#      options:
+#        currentSchema: crud-example
